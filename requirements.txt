@@ -1,0 +1,7 @@
+numpy==2.2.5
+pandas==2.2.3
+pesq==0.0.4
+scikit_learn==1.6.1
+torch==2.2.2+cu118
+torchaudio==2.2.2+cu118
+tqdm==4.66.5
