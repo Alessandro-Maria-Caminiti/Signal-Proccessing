@@ -25,7 +25,6 @@ class AudioPairDataset(Dataset):
     def __getitem__(self, idx):
         clean_path = self.pathlist[idx]
         clean_waveform, cleanwaveform_sr = torchaudio.load(clean_path)
-
         if self.transform:
             clean_waveform = self.transform(clean_waveform, cleanwaveform_sr)
         distorted_waveform = None
@@ -153,9 +152,11 @@ class AudioPreprocessor:
             waveform = F.pad(waveform, (0, pad_len))
         else:
             waveform = waveform[:, :self.num_samples]
+        
 
         # Convert to Mel Spectrogram
         mel = self.melspec(waveform)  # shape: [1, n_mels, time]
+        mel = F.pad(mel, (0, 2))
         return mel
 
 
